@@ -1,0 +1,47 @@
+{% extends 'bazar/base.html' %}
+
+
+{% block content %}
+<h2>Current list</h2>
+
+
+                   <table>
+                   <tr>
+                   <th>Items</th>
+                   <th>Amount</th>
+                   <th>Estimate Cost</th>
+                   <th>Edit</th>
+                    <th>complete</th>
+
+                   </tr>
+                   {% for bazar in bazars %}
+                   <tr>
+                   <td>{{ bazar.items }}</td>
+                   <td>{{ bazar.amount }}</td>
+                   <td>BDT. {{ bazar.estimated_cost}}</td>
+
+                    <td><a href="{% url 'bazarlist' bazar.id %}">Edit</a></td>
+                    <td>
+                       <form method="POST" action="{% url 'complete' bazar.id %}">
+                        {% csrf_token %}
+
+
+                        <button type="submit">Complete</button>
+                      </td>
+
+
+
+                   </tr>
+                   {% endfor %}
+
+                   </table>
+
+<ul>
+
+
+
+</ul>
+
+{% endblock %}
+
+
